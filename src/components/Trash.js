@@ -1,10 +1,10 @@
 import React from "react";
 
-import { useGlobalContext } from "../context/context";
+import { useSelector } from "react-redux";
 import NoteList from "./NoteList";
 
 const Trash = () => {
-  const { notes } = useGlobalContext();
+  const notes = useSelector((state) => state.notes);
   const trashedNotes = notes.filter((note) => note.status === "trash");
 
   return (

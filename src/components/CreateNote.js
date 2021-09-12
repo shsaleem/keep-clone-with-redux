@@ -1,10 +1,27 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { useGlobalContext } from "../context/context";
+import { actions } from "../store/actions";
 
 const CreateNote = () => {
-  const { isExpanded, note, handleInput, addNote, handleClick } =
-    useGlobalContext();
+  const dispatch = useDispatch();
+  const isExpanded = useSelector((state) => state.isExpanded);
+  const note = useSelector((state) => state.note);
+
+  const addNote = () => {
+    dispatch(actions.addNote());
+  };
+
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    dispatch(actions.createNote({ name, value }));
+  };
+
+  const handleClick = () => {
+    dispatch(actions.expand());
+  };
+
   return (
     <div>
       <form onSubmit={(e) => e.preventDefault()}>

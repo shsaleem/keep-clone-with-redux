@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { useGlobalContext } from "../context/context";
+import { actions } from "../store/actions";
 
 const Search = () => {
-  const { query, handleSearch } = useGlobalContext();
+  const dispatch = useDispatch();
+  const query = useSelector((state) => state.query);
+
+  const handleSearch = (e) => {
+    dispatch(actions.handleSearch(e.target.value));
+  };
 
   return (
     <div>
@@ -12,7 +18,7 @@ const Search = () => {
         placeholder="Search for a note"
         className="search-input"
         value={query}
-        onChange={(e) => handleSearch(e.target.value)}
+        onChange={handleSearch}
       ></input>
     </div>
   );

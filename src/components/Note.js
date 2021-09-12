@@ -1,11 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import { FaTrashAlt, FaTrash, FaArchive, FaTrashRestore } from "react-icons/fa";
 import { MdUnarchive } from "react-icons/md";
 
-import { useGlobalContext } from "../context/context";
+import { actions } from "../store/actions";
 
 const Note = ({ id, title, content, status }) => {
-  const { toggleTrash, toggleArchive, deleteNote } = useGlobalContext();
+  const dispatch = useDispatch();
+
+  const toggleTrash = () => {
+    dispatch(actions.toggleTrash(id));
+  };
+
+  const toggleArchive = () => {
+    dispatch(actions.toggleArchive(id));
+  };
+
+  const deleteNote = () => {
+    dispatch(actions.deleteNote(id));
+  };
+
   return (
     <div className="note">
       <h1>{title}</h1>

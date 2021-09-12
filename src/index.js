@@ -3,13 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-import { KeepProvider } from "./context/context";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <KeepProvider>
-      <App />
-    </KeepProvider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );

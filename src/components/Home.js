@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-import { useGlobalContext } from "../context/context";
 import CreateNote from "./CreateNote";
 import NoteList from "./NoteList";
 
 const Home = () => {
-  const { notes } = useGlobalContext();
+  const notes = useSelector((state) => state.notes);
   const mainNotes = notes.filter((note) => note.status === "notes");
 
   return (
